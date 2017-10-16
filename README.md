@@ -1,6 +1,6 @@
 # TypeScript in Go
 
-Example of embedding TypeScript in Go.
+Example of embedding TypeScript in a Go executable.
 
 ## Requirements
 
