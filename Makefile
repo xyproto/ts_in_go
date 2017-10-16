@@ -32,4 +32,4 @@ clean:
 	@rm -f *.bak *~ *.tmp *.swp
 	@rm -rf "${JS_DIR}"
 	@rm -f "${GO_DIR}/${DATA_FILENAME}" "${BIN_DIR}/${EXECUTABLE}" "${TS_DIR}/tsconfig.json"
-	@rmdir --ignore-fail-on-non-empty "${BIN_DIR}"
+	@rmdir --ignore-fail-on-non-empty "${BIN_DIR}" 2>/dev/null || true
