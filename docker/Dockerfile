@@ -12,12 +12,16 @@ RUN git clone https://github.com/xyproto/ts_in_go
 # Install the go-bindata executable
 RUN go get -u github.com/jteeuwen/go-bindata/...
 
-# Mount the /ts folder (containing TypeScript sources) and the
-# /bin folder (where the compiled executable is placed)
-VOLUME /ts /bin
-
 # Set the working directory
 WORKDIR ts_in_go
 
+# Mount the /ts folder (containing TypeScript sources)
+VOLUME ["/ts"]
+
+# Mount the /bin folder (where the compiled executable is placed)
+VOLUME ["/bin"]
+
+ENV TS_DIR=/ts
+ENV BIN_DIR=/bin
+
 ENTRYPOINT ["make"]
-CMD ["TS_DIR=/ts", "BIN_DIR=/bin"]
