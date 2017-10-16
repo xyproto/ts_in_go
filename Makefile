@@ -21,7 +21,7 @@ ${JS_DIR}: ${TS_DIR}/tsconfig.json
 
 ${GO_DIR}/data.go: ${JS_DIR}
 	@echo "Embedding JavaScript from ${JS_DIR} in ${GO_DIR}/${DATA_FILENAME}"
-	@go-bindata --prefix "${JS_DIR}" -o "${GO_DIR}/${DATA_FILENAME}" "${JS_DIR}" ${DATA_DIR}
+	@go-bindata --prefix "${JS_DIR}" -o "${GO_DIR}/${DATA_FILENAME}" "${JS_DIR}" "${DATA_DIR}"
 
 ${BIN_DIR}/${EXECUTABLE}: ${GO_DIR}/main.go ${GO_DIR}/${DATA_FILENAME}
 	@echo "Compiling Go from ${GO_DIR} to ${BIN_DIR}/${EXECUTABLE}"
