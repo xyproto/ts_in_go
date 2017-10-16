@@ -6,5 +6,5 @@ import (
 
 func main() {
 	vm := otto.New()
-	vm.Run(string(MustAsset("hello.js")))
+	vm.Run(string(MustAsset("main.js")))
 }

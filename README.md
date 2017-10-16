@@ -11,7 +11,7 @@ Example of embedding TypeScript in a Go executable.
 
 ## Example
 
-1. Edit `src/hello.ts`
+1. Edit `src/main.ts`
 2. Build the project with `make`
 3. Run `./main` and see the output generated from the embedded TypeScript file
 
@@ -23,4 +23,4 @@ Just build and run:
 
     cd docker; ./build.sh; ./compile.sh; ./main
 
-Then edit `docker/src/hello.ts` and run `./compile.sh; ./main` again.
+Then edit `docker/src/main.ts` and run `./compile.sh; ./main` again.
