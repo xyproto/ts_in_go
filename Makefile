@@ -12,11 +12,12 @@ all: ${BIN_DIR}/${EXECUTABLE}
 
 ${TS_DIR}/tsconfig.json: ${TS_DIR}
 	@echo "Generating ${TS_DIR}/tsconfig.json"
-	cd "${TS_DIR}" && tsc --init *.ts >/dev/null
+	cd "${TS_DIR}" && /usr/bin/tsc --init *.ts >/dev/null
 
 ${JS_DIR}: ${TS_DIR}/tsconfig.json
 	echo "Compiling TypeScript in ${TS_DIR} to JavaScript in ${JS_DIR}"
-	mkdir -p "${JS_DIR}" && tsc -p "${TS_DIR}" --removeComments --outDir "${JS_DIR}"
+	/usr/bin/tsc --version
+	mkdir -p "${JS_DIR}" && /usr/bin/tsc -p "${TS_DIR}" --removeComments --outDir "${JS_DIR}"
 
 ${GO_DIR}/data.go: ${JS_DIR}
 	@echo "Embedding JavaScript from ${JS_DIR} in ${GO_DIR}/${DATA_FILENAME}"
