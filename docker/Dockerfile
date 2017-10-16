@@ -15,12 +15,11 @@ RUN cd ts_in_go/src && go get -d -v
 # Install the go-bindata executable
 RUN go get -u github.com/jteeuwen/go-bindata/...
 
-# Replace the src folder
-RUN rm -rf ts_in_go/src
-ADD src ts_in_go/src/
-
+# Set the working directory
 WORKDIR ts_in_go
 
-ENTRYPOINT ["make"]
-CMD ["SOURCE_DIR=./src/"]
+# Mount the /src folder
+VOLUME ["/src"]
 
+ENTRYPOINT ["make"]
+CMD ["SOURCE_DIR=/src", "OUTPUT_FILE=main"]
