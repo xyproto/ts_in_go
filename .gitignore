@@ -15,3 +15,4 @@
 
 main
 gen/
+src/data.go
