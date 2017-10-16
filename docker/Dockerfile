@@ -7,7 +7,9 @@ RUN apt-get update && \
 
 RUN go get -u github.com/jteeuwen/go-bindata/...
 
-RUN git clone https://github.com/xyproto/typescript_in_go
-WORKDIR typescript_in_go
+RUN git clone https://github.com/xyproto/ts_in_go
+RUN cd ts_in_go && go get -d -v
+
+WORKDIR ts_in_go
 
 CMD ["make"]
