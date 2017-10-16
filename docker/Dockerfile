@@ -15,13 +15,13 @@ RUN go get -u github.com/jteeuwen/go-bindata/...
 # Set the working directory
 WORKDIR ts_in_go
 
-# Mount the /ts folder (containing TypeScript sources)
-VOLUME ["/ts"]
+# Fetch go dependencies
+RUN cd go && go get -d -v
 
-# Mount the /bin folder (where the compiled executable is placed)
-VOLUME ["/bin"]
+# Volume mount the /ts folder (containing TypeScript sources)
+# Volume mount the /output folder (where the compiled executable is placed)
+VOLUME ["/ts_sources", "/bin_output"]
 
-ENV TS_DIR=/ts
-ENV BIN_DIR=/bin
-
+# Compile, using the volume mounts
+ENV TS_DIR=/ts_sources BIN_DIR=/bin_output
 ENTRYPOINT ["make"]

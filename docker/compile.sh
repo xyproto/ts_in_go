@@ -1,6 +1,6 @@
 #!/bin/sh
 mkdir -p ./bin
-docker run -v "$(pwd)/ts:/ts" -v "$(pwd)/bin:/bin" -t --rm ts_to_go:latest
+docker run -v "$(pwd)/ts:/ts_sources" -v "$(pwd)/bin:/bin_output" -t --rm ts_to_go:latest
 if [ -f bin/main ]; then
   echo 'Compilation succeeded.'
   mv -f bin/main ./main && rmdir ./bin
