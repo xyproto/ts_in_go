@@ -13,6 +13,7 @@
 # Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
 .glide/
 
-main
-gen/
-src/data.go
+bin/main
+js/
+go/data.go
+tsconfig.json

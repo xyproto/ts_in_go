@@ -1,9 +1,0 @@
-{
-    "files": [
-      "hello.ts"
-    ],
-    "exclude": [
-        "node_modules",
-        "tsconfig.json"
-    ]
-}
