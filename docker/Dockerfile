@@ -9,17 +9,15 @@ RUN apt-get update && \
 # Clone the ts_in_go repo within the Docker container
 RUN git clone https://github.com/xyproto/ts_in_go
 
-# Install missing dependencies
-RUN cd ts_in_go/src && go get -d -v
-
 # Install the go-bindata executable
 RUN go get -u github.com/jteeuwen/go-bindata/...
+
+# Mount the /ts folder (containing TypeScript sources) and the
+# /bin folder (where the compiled executable is placed)
+VOLUME /ts /bin
 
 # Set the working directory
 WORKDIR ts_in_go
 
-# Mount the /src folder
-VOLUME ["/src"]
-
 ENTRYPOINT ["make"]
-CMD ["SOURCE_DIR=/src", "OUTPUT_FILE=main"]
+CMD ["TS_DIR=/ts", "BIN_DIR=/bin"]

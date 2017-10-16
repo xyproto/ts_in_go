@@ -1,8 +1,10 @@
 #!/bin/sh
-docker run -v "$(pwd)/src:/src" -i -t --rm ts_to_go:latest
-if [ -f src/main ]; then
+mkdir -p ./bin
+docker run -v "$(pwd)/ts:/ts" -v "$(pwd)/bin:/bin" -t --rm ts_to_go:latest
+if [ -f bin/main ]; then
   echo 'Compilation succeeded.'
-  mv -f src/main ./main
+  mv -f bin/main ./main
+  rmdir ./bin
   ls -al --color=auto -F ./main
 else
   echo 'Compilation failed.'
