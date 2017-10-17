@@ -1,7 +1,7 @@
 .PHONY: all clean
 
 GO_DIR ?= ./go
-TS_DIR ?= ./ts
+TS_DIR ?= ./src
 BIN_DIR ?= ./bin
 JS_DIR ?= ./js
 DATA_DIR ?=
