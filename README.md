@@ -2,12 +2,16 @@
 
 Example of embedding TypeScript in a Go executable.
 
-## Requirements
+## Build-time requirements
 
 * A recent version of the `go` compiler.
 * `make`
-* `tsc` command, for compiling TypeScript to JavaScript
+* A `tsc` command, for compiling TypeScript to JavaScript
 * `go-bindata`, install with: `go get -u github.com/jteeuwen/go-bindata/...`
+
+## Run-time requirements
+
+* None, only the built executable (that embeds TypeScript)
 
 ## Example
 
