@@ -1,13 +1,13 @@
 .PHONY: all clean
 
-GO_DIR ?= ./go
+GO_DIR ?= ./gosrc
 TS_DIR ?= ./src
 JS_DIR ?= ./js
 DATA_DIR ?=
 EXECUTABLE ?= main
 DATA_FILENAME ?= data.go
 
-all: ${EXECUTABLE} clean_tempfiles
+all: ${EXECUTABLE}
 
 ${TS_DIR}/tsconfig.json: ${TS_DIR}
 	@echo "Generating ${TS_DIR}/tsconfig.json"
@@ -23,7 +23,7 @@ ${GO_DIR}/data.go: ${JS_DIR}
 	@go-bindata --pkg main --prefix "${JS_DIR}" -o "${GO_DIR}/${DATA_FILENAME}" "${JS_DIR}" "${DATA_DIR}"
 
 ${EXECUTABLE}: ${GO_DIR}/main.go ${GO_DIR}/${DATA_FILENAME}
-	@echo "Compiling Go from ${GO_DIR} to ${EXECUTABLE}"
+	@echo "Compiling Go from ${GO_DIR} to bin/${EXECUTABLE}"
 	@cd "${GO_DIR}" && go build -o "${EXECUTABLE}"
 	@mv "${GO_DIR}/${EXECUTABLE}" "${EXECUTABLE}"
 	@echo Done

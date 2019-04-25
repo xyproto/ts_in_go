@@ -2,6 +2,16 @@
 
 Example of embedding TypeScript in a Go executable.
 
+## Work in progress
+
+```
+../node_modules/@types/react/index.d.ts:169:11 - error TS2559: Type 'Component<P, S>' has no properties in common with type 'ComponentLifecycle<P, S>'.
+169     class Component<P, S> implements ComponentLifecycle<P, S> {
+~~~~~~~~~
+```
+
+There is currently an error when compiling "hello world". To be figured out. This repository is a work in progress!
+
 ## Build-time requirements
 
 * A recent version of the `go` compiler.
