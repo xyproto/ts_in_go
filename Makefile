@@ -12,7 +12,7 @@ all: ${EXECUTABLE} clean_tempfiles
 ${TS_DIR}/tsconfig.json: ${TS_DIR}
 	@echo "Generating ${TS_DIR}/tsconfig.json"
 	@cd "${TS_DIR}" && /usr/bin/tsc --init *.ts >/dev/null
-	@sed 's/\"strict\": true/\"strict\": false,/g' -i "${TS_DIR}/tsconfig.json"
+	@sed 's/\"strict\": true/\"strict\": false/g' -i "${TS_DIR}/tsconfig.json"
 
 ${JS_DIR}: ${TS_DIR}/tsconfig.json
 	@echo "Compiling TypeScript in ${TS_DIR} to JavaScript in ${JS_DIR}"
@@ -20,15 +20,15 @@ ${JS_DIR}: ${TS_DIR}/tsconfig.json
 
 ${GO_DIR}/data.go: ${JS_DIR}
 	@echo "Embedding JavaScript from ${JS_DIR} in ${GO_DIR}/${DATA_FILENAME}"
-	@go-bindata --prefix "${JS_DIR}" -o "${GO_DIR}/${DATA_FILENAME}" "${JS_DIR}" "${DATA_DIR}"
+	@go-bindata --pkg main --prefix "${JS_DIR}" -o "${GO_DIR}/${DATA_FILENAME}" "${JS_DIR}" "${DATA_DIR}"
 
 ${EXECUTABLE}: ${GO_DIR}/main.go ${GO_DIR}/${DATA_FILENAME}
 	@echo "Compiling Go from ${GO_DIR} to ${EXECUTABLE}"
 	@cd "${GO_DIR}" && go build -o "${EXECUTABLE}"
 	@mv "${GO_DIR}/${EXECUTABLE}" "${EXECUTABLE}"
 	@echo Done
-	
-clean_tempfiles:
+
+distclean: clean
 	@rm -rf "${JS_DIR}"
 	@rm -f "${GO_DIR}/${DATA_FILENAME}" "${TS_DIR}/tsconfig.json"
 
